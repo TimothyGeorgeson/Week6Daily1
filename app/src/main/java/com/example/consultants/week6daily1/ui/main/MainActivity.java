@@ -27,7 +27,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
     public static final String TAG = MainActivity.class.getSimpleName() + "_TAG";
@@ -56,18 +55,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         permissionsToRequest = permissionsToRequest(permissions);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (permissionsToRequest.size() > 0) {
-                requestPermissions(permissionsToRequest.toArray(
-                        new String[permissionsToRequest.size()]), ALL_PERMISSIONS_RESULT);
-            }
-        }
-
         //initialize presenter and recyclerview
         presenter = new MainPresenter();
         rvPlaces = findViewById(R.id.rvPlaces);
 
-        getLocationAndPlaces("restaurant");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (permissionsToRequest.size() > 0) {
+                requestPermissions(permissionsToRequest.toArray(
+                        new String[permissionsToRequest.size()]), ALL_PERMISSIONS_RESULT);
+            } else {
+                getLocationAndPlaces("restaurant");
+            }
+        } else {
+            getLocationAndPlaces("restaurant");
+        }
+
     }
 
     public void getLocationAndPlaces(final String type) {
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             return;
         }
         Log.d(TAG, "onCreate: got past permissions");
-        //once permissions are OK (I had to run app twice initially to get here)
+
         //get last location, and call get nearby places
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -204,6 +206,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                             return;
                         }
                     }
+                } else {
+                    getLocationAndPlaces("restaurant");
                 }
 
                 break;

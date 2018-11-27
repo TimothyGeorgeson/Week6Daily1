@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.example.consultants.week6daily1.R;
 import com.example.consultants.week6daily1.ui.main.MainActivity;
 
 public class CategoryFragment extends DialogFragment {
-    public static final String TAG = CategoryFragment.class.getSimpleName() + "_TAG";
 
     RadioGroup categoryGroup;
     RadioButton categoryButton;
@@ -37,9 +35,6 @@ public class CategoryFragment extends DialogFragment {
                 // find the radiobutton by id
                 int selectedId = categoryGroup.getCheckedRadioButtonId();
                 categoryButton = view.findViewById(selectedId);
-
-                if (categoryButton != null)
-                    Log.d(TAG, "onClick: " + categoryButton.getText());
 
                 ((MainActivity)getActivity()).getLocationAndPlaces(categoryButton.getText().toString().toLowerCase());
                 getDialog().dismiss();
