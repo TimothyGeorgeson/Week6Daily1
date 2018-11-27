@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Week6Daily1</string>
+    <string name="title_activity_main">Nearby Places</string>
+    <string name="action_settings">Settings</string>
+</resources>
