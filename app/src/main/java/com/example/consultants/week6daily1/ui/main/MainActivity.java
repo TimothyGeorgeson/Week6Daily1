@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         getLocationAndPlaces("restaurant");
     }
 
-    private void getLocationAndPlaces(final String type) {
+    public void getLocationAndPlaces(final String type) {
         //initialize fused location client, used to get device location
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 

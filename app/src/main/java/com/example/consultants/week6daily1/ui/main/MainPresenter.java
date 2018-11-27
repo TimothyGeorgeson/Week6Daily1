@@ -30,7 +30,9 @@ public class MainPresenter implements MainContract.Presenter {
                 for (int i = 0; i < placesResponse.getResults().size(); i++) {
                     String name = placesResponse.getResults().get(i).getName();
                     String street = placesResponse.getResults().get(i).getVicinity();
-                    String rating = Double.toString(placesResponse.getResults().get(i).getRating());
+                    String rating = "N/A";
+                    if (placesResponse.getResults().get(i).getRating() != null)
+                        rating = Double.toString(placesResponse.getResults().get(i).getRating());
                     Double lat = placesResponse.getResults().get(i).getGeometry().getLocation().getLat();
                     Double lng = placesResponse.getResults().get(i).getGeometry().getLocation().getLng();
                     MyPlace place = new MyPlace(name, street, rating, lat, lng);
