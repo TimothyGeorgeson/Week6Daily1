@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void onNearbyPlaces(final List<MyPlace> placeList) {
+    public void onNearbyPlaces(final ArrayList<MyPlace> placeList) {
         //this came from onSuccess callback from the network thread
         //so needed to specify that this runs on UI thread to update list views
         this.runOnUiThread(new Runnable() {
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 rvPlaces.setAdapter(adapter);
 
                 Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("places", placeList);
                 MapViewFragment mapViewFragment = new MapViewFragment();
                 mapViewFragment.setArguments(bundle);
 

@@ -32,7 +32,7 @@ public class MainPresenter implements MainContract.Presenter {
             public void onSuccess(PlacesResponse placesResponse) {
                 Log.d(TAG, "onSuccess: num of places: " + placesResponse.getResults().size());
 
-                List<MyPlace> placeList = new ArrayList<>();
+                ArrayList<MyPlace> placeList = new ArrayList<>();
 
                 for (int i = 0; i < placesResponse.getResults().size(); i++) {
                     String name = placesResponse.getResults().get(i).getName();
