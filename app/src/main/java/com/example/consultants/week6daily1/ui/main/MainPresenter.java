@@ -1,6 +1,5 @@
 package com.example.consultants.week6daily1.ui.main;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.consultants.week6daily1.client.OkhttpHelper;
@@ -9,18 +8,12 @@ import com.example.consultants.week6daily1.model.placesdata.PlacesResponse;
 import com.example.consultants.week6daily1.utils.PlacesCallback;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainPresenter implements MainContract.Presenter {
     public static final String TAG = MainPresenter.class.getSimpleName() + "_TAG";
 
-    Context context;
     MainContract.View view;
     OkhttpHelper okhttpHelper;
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
 
     @Override
     public void getNearbyPlaces(String latLng, String type) {

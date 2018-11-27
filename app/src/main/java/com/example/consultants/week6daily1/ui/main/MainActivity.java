@@ -20,6 +20,7 @@ import android.view.MenuItem;
 
 import com.example.consultants.week6daily1.R;
 import com.example.consultants.week6daily1.model.MyPlace;
+import com.example.consultants.week6daily1.ui.fragments.CategoryFragment;
 import com.example.consultants.week6daily1.ui.fragments.MapViewFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -167,6 +168,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         //show settings when clicked
         if (item.getItemId() == R.id.action_settings) {
             Log.d(TAG, "onOptionsItemSelected: Settings");
+            CategoryFragment categoryFragment = new CategoryFragment();
+            categoryFragment.show(fm, "CategoryFragment");
             return true;
         }
 
